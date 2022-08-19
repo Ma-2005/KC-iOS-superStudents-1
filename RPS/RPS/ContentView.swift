@@ -11,7 +11,8 @@ struct ContentView: View {
     
     @State var RPS = ["1","2","3"]
     
-    @State var P = ""
+    @State var P1 = ""
+    @State var P2 = ""
     
     @State var IG = "1"
     @State var IM = "1"
@@ -32,13 +33,14 @@ struct ContentView: View {
             
             VStack{
                 
-                Text("Guest")
+                TextField("First Player Name", text: $P1 )
                     .font(.custom("Amiri-BoldItalic", size: 36))
                     .foregroundColor(.white)
-                    .shadow(color: .yellow, radius: 5)
-                    .padding()
-                    .background(.yellow.opacity(0.7))
+                    .shadow(color: .black, radius: 5)
+                    .frame(width: 300, height: 100)
+                    .background(.yellow.opacity(1))
                     .cornerRadius(30)
+                    .padding()
                 Spacer()
                 
                     
@@ -68,7 +70,7 @@ struct ContentView: View {
                     HStack{
                         Spacer()
                         
-                        VStack{
+                        VStack(spacing: 40){
                             
                             Image(IG)
                                 .resizable()
@@ -83,7 +85,7 @@ struct ContentView: View {
                                     
                                 }
                                 .alert(isPresented: $showAlert) {
-                                    Alert(title: Text("Congratulations"), message: Text("Winner : \(win)"), dismissButton: .default(Text("Play again")){
+                                    Alert(title: Text("✨ Congratulations 💐"), message: Text("Winner : \(win)"), dismissButton: .default(Text("Play again")){
                                         R1 = 0
                                         R2 = 0
                                     }) }
@@ -97,7 +99,7 @@ struct ContentView: View {
                 }
                 Spacer()
                 
-                TextField("     Player Name", text: $P)
+                TextField("Second Player Name", text: $P2)
                     .font(.custom("Amiri-BoldItalic", size: 36))
                     .foregroundColor(.white)
                     .shadow(color: .black, radius: 5)
@@ -148,10 +150,10 @@ struct ContentView: View {
         if R2 == 3 || R1 == 3 {
                   
             if R1 == 3 {
-                       win = "Guest"
+                       win = P1
                    }
                    else if R2 == 3 {
-                       win = P
+                       win = P2
                    }
             
             showAlert = true
